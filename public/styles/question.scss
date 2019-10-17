@@ -1,0 +1,182 @@
+//Page question pour former le parcours
+
+#div-form {  
+  width: $width* 0.8;
+  height: auto;
+  overflow: hidden;
+  padding-bottom: 5vh;
+ // margin-top:$height * 0.08;
+ // margin-left: $width * 0.8;
+
+ 
+}
+#div-container {
+  width: $width * 2.4;
+  display: flex;
+  margin: auto;
+}
+
+.div-question {
+  width: $width;
+  height: 30vh;
+}
+.div-input {
+  width: $width *0.6;
+  margin: auto;
+  height: auto;
+
+}
+
+
+// fléche verte en svg: pour passer les questions
+#div-arrow{
+  display: block;
+  border: 0;
+  text-transform: none;
+  position: fixed;
+  bottom: $height * 0.2;
+  right: $width * 0.15;
+  width: 75px;
+  height:60px;
+  cursor: pointer;
+  @include lg{
+    width: $width * 0.1;
+    bottom: $height * 0.1;
+
+ }
+}
+
+
+// flêche  en svg: pour passer les questions
+#arrow2{
+  display: none;
+  border: 0;
+  text-transform: none;
+  position: fixed;
+  bottom: $height * 0.2;
+  left: $width * 0.15;
+  width: 75px;
+  height: 60px;
+  //width: $width * 0.2;
+  //height: auto;
+  cursor: pointer;
+  @include lg{
+    width: $width * 0.1;
+    bottom: $height * 0.1;
+
+  }
+}
+
+//Personnaliser les boutons radios
+input {
+  display: none;
+  margin: auto;
+}
+//affichage du input radio personalisé
+input + label::before {
+  background: #fff;
+  border: 2px solid $red-color;
+  border-radius: 40% 30%;
+  margin-top: -3px;
+  margin-right: 6px;
+  display: inline-block;
+  vertical-align: middle;
+  content: "";
+  width: 20px;
+  height: 20px;
+}
+
+input[type="radio"]:checked + label:before {
+  background: $green-color;
+  border-color: $green-color;
+  box-shadow: inset 0px 0px 0px 2px $white-color;
+}
+
+label {
+  cursor: pointer;
+
+}
+
+#div-route{
+  display: none;
+  width: 100%;
+}
+
+//div contient le svg: route
+.popup {
+  position: fixed;
+  font-size: $size * 0.8;
+  display: none;
+  background-color: $white-color;
+  padding: $width * 0.05;
+  margin: auto;
+  top: 50%;
+  left: 50%;  
+  transform: translate(-50%, -50%);  
+  width: 80%;  
+  height: $height*0.6;  
+  border-radius: 10%;
+  border: 1px solid $black-color;
+  img{
+    display: inline-block;
+    width: 40%;
+    height: auto;
+    border-radius: 20% 30% ;
+  }
+  @include lg{
+    width: $width *0.4;
+  }
+
+}
+
+
+
+//id du svg
+#fig-route{
+  width: $width * 0.8;
+  height: $height * 0.8;
+}
+
+.resize{
+  position: relative;
+  word-wrap: break-word;
+  padding-bottom: 5px;
+  margin: auto;
+
+
+}
+
+//pour fermer la popup
+.menuBars {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  width: 50px;
+  height: 50px;
+  z-index: 101;
+  cursor: pointer;
+}
+
+.menuBar {
+  background-color: $orange-color;
+  width: 100%;
+  height: 0.5rem;
+  margin: auto;
+  border-radius: 40% 50%;
+  position: absolute;
+}
+#menuTop{
+  @include rotate-ellipse(45deg);
+}  
+#menuBottom{
+  @include rotate-ellipse(-45deg);
+}
+
+#mybigImage{
+  position: absolute;
+  top: 50%;
+  left: 50%;  
+  transform: translate(-50%, -50%);  
+  width: 200px;  
+  height: auto;  
+}
