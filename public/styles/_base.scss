@@ -113,10 +113,20 @@ section {
   }
 }
 h3 {
-    font-size: $size * 2;     
-    margin-bottom: $padding * 2;
+  font-size: $size * 1.8;     
+  margin-left:$padding *3  ;
+  margin-bottom: $padding * 2;
 
-}  
+@include lg{
+  font-size: $size * 3; 
+  margin-left:$padding *8;
+  margin-bottom: $padding * 2;
+}
+  @include xl{
+    font-size: $size * 3; 
+    margin-left:$padding *8;
+}
+} 
  
 
 #introduction {

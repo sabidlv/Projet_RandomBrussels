@@ -8,7 +8,7 @@ export const route = () => {
       .css('display', 'block');
   });
 
-  $('.popup').on('click', () => {
+  /* $('.popup').on('click', () => {
     $('.popup').fadeOut();
-  });
+  }); */
 };
