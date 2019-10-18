@@ -56,7 +56,6 @@ let tabRetour = [];
 
 
 $("input[type='radio']").click(() => {
-  // if ($('input[name="musee"]:checked', '#form-question')) {
   if ($('input[name="musee"]').is(':checked')) {
     val1 = $('input[name="musee"]:checked').val();
     console.log(val1);
@@ -73,6 +72,7 @@ $("input[type='radio']").click(() => {
     console.log(val3);
     flag3 = true;
   }
+
   if (flag1 && flag2 && flag3) {
     tabRetour = myfct(val1, val2, val3);
   }
@@ -87,7 +87,7 @@ export const route = () => {
         .empty()
         .css('display', 'block');
     } else {
-      swal('Oops!', 'Sorry', 'error');
+      swal('Oops! Sorry');
     }
   });
 };
@@ -111,13 +111,26 @@ for (const path of parcours) {
         $('.popup')
           .append(`<p class="resize">${parcoursTab[j][path.key][i]}</p>`);
       } */
+      let compt = 0;
+      const hasards = tabRetour.filter((x) => x.key === 'hasard');
       for (const el of tabRetour) {
-        if (el.key === path.key) {
+        if (el.key === path.key && el.key !== 'hasard') {
+          console.log(1);
           $('.popup')
-            .append(`<p class="resize">${el.nom}</p>`)
-            .append(`<p class="resize">${el.adresse}</p>`)
+            .append(`<img id="myimage" src='./assets/images/parcours/${el.image}' alt='musée'>`)
+            .append(`<h4 class="resize-title">${el.nom}</h4>`)
+            .append(`<a class="resize" href=${el.map} target='_blank' class= 'linkPopup'> ${el.adresse}</a>`)
             .append(`<p class="resize">${el.description}</p>`)
-            .append(`<p class="resize">${el.url}</p>`);
+            .append(`<a  class="resize" href=${el.url} target= '_blank' class = 'linkPopup'> Site of the place</a>`);
+        } else if (el.key === path.key && el.key === 'hasard') {
+          console.log(2);
+          $('.popup')
+            .append(`<img id="myimage" src='./assets/images/parcours/${hasards[compt].image}' alt='musée'>`)
+            .append(`<h4 class="resize-title">${hasards[compt].nom}</h4>`)
+            .append(`<a class="resize" href=${hasards[compt].map} target='_blank' class= 'linkPopup'> ${hasards[compt].adresse}</a>`)
+            .append(`<p class="resize">${hasards[compt].description}</p>`)
+            .append(`<a  class="resize" href=${hasards[compt].url} target= '_blank' class = 'linkPopup'> Site of the place</a>`);
+          compt++;
         }
       }
     }
