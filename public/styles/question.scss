@@ -15,35 +15,40 @@
 
 // styliser les inputs questions
 #div-form {  
-  width: $width* 0.8;
+  width: $width* 0.9;
   height: auto;
   overflow: hidden;
   padding-bottom: $height * 0.1;
 }
 #div-container {
-  width: $width * 2.4;
+  width: $width * 2.7;
   display: flex;
   margin: auto;
 }
 
 .div-question {
-  width: $width *0.8;
+  width: $width *0.9;
   height: 30vh;
 }
 .div-input {
-  width: $width *0.6;
-  padding-left: $padding;
-  padding-bottom: $padding *0.4;
-  margin: auto;
+  width: $width *0.8;
   height: auto;
-  @include md{
+  padding-left: $padding *4;
+  margin: auto;
+  @include xs{
     width: $width * 0.5;
+  }
+  @include sm{
+    width: $width * 0.5;
+    padding-left: $padding * 2;
   }
   @include lg{
     width: $width*0.4;
+    padding-bottom: $padding *0.4;
   }
   @include xl{
     width: $width*0.2;
+    padding-bottom: $padding *0.4;
   }
 
 }
@@ -75,7 +80,7 @@ input[type="radio"]:checked + label:before {
 
 label {
   display: inline-block;
-  font-size: $size*1.2;
+  font-size: $size*1.1;
   text-align: center;
   margin: auto;
   cursor: pointer;
@@ -83,7 +88,7 @@ label {
     font-size: $size * 1.3;
   }
   @include md{
-    font-size: $size *1.6;
+    font-size: $size *1.7;
   }
   @include lg{
     font-size: $size* 1.5;
@@ -96,20 +101,27 @@ h3 {
   font-size: $size * 1.8;     
   margin-left:$padding *2.8;
   margin-bottom: $padding * 2;
+  @include xs{
+    margin-left:$padding *8;
+  }
+  @include sm{
+    margin-left:$padding *12;
+  }
   @include md{
     font-size: $size * 2.5;
-    margin-left: $padding * 4;
+    margin-left: $padding * 15;
+    margin-bottom: $padding * 1.6;
   }
-
-@include lg{
-  font-size: $size * 3; 
+  @include lg{
+  font-size: $size * 3.1; 
   margin-left:$padding *8;
-  margin-bottom: $padding * 2;
-}
+  margin-bottom: $padding * 1.8;
+  }
   @include xl{
     font-size: $size * 3; 
-    margin-left:$padding *8;
-}
+    margin-left:$padding *15;
+    margin-bottom: $padding * 1.8;
+  }
 } 
 
 
@@ -117,39 +129,49 @@ h3 {
 #div-arrow{
   display: block;
   border: 0;
+  width: $width * 0.2;
+  height:auto;
   text-transform: none;
   position: fixed;
-  bottom: $height * 0.2;
+  top: $height * 0.8;
   right: $width * 0.15;
-  width: 75px;
-  height:60px;
   cursor: pointer;
-  @include lg{
+  @include xs {
+    width: $width * 0.15;
+  }
+  @include sm {
     width: $width * 0.1;
-    bottom: $height * 0.1;
+    right: $width * 0.2;
+  }
+  @include md{
+    right: $width * 0.20;
+  }
 
- }
 }
-
 
 // flêche  en svg: pour passer les questions
 #arrow2{
   display: none;
   border: 0;
+  width: $width * 0.2;
+  height:auto;
   text-transform: none;
   position: fixed;
-  bottom: $height * 0.2;
+  top: $height * 0.7;
   left: $width * 0.15;
-  width: 75px;
-  height: 60px;
-  //width: $width * 0.2;
-  //height: auto;
   cursor: pointer;
-  @include lg{
-    width: $width * 0.1;
-    bottom: $height * 0.1;
-
+  @include xs {
+    width: $width * 0.15;
   }
+  @include sm {
+    width: $width * 0.1;
+    left: $width * 0.3;
+  }
+  @include md{
+    top: $height * 0.75;
+    left: $width * 0.20;
+  }
+
 }
 
 //div contient le svg: route
@@ -165,26 +187,35 @@ h3 {
   height: $height * 0.7;  
   border-radius: 10%;
   border: 1px solid $black-color;
-  overflow: hidden;
-  padding: $padding * 0.6;
+ // overflow: hidden;
+  overflow-y:scroll;
+  padding: $padding;
   margin: auto;
-  img{
-    display: inline-block;
-    width: auto;
-    height: 25%;
-    border-radius: 20% 30% ;
-  }
+  @include xs{
+    padding: $padding * 0.6;
+  }  
   @include sm{
-    padding: $padding * 2;
+    padding: $padding * 1.2;
   }
   @include md{
-
+    padding: $padding * 0.8;
   }
   @include lg{
-    width: $width *0.4;
-    padding: $width * 0.03;
+    width: $width *0.5;
   }
-
+  @include xl{
+    width: $width *0.6;
+    padding:$padding * 0.7;
+  }
+  img{
+    display: inline-block;
+    width: 50%;
+    height: auto;
+  @include xs{
+    width: auto;
+    height: 25%;
+  }
+  }
 }
 
 .resize{
@@ -192,32 +223,43 @@ h3 {
   display: inline-block;
   font-size: $size * 0.8;
   word-wrap: break-word;
-  margin: $padding * 0.5 auto;
+  margin: $padding * 0.1 auto;
   @include xs{
     font-size: $size * 1;
-
+    margin: $padding * 0.2 auto;
   }
   @include sm{
-    font-size: $size * 1.7;
-    margin: $padding * 1 auto;
+    font-size: $size ;
+    margin: $padding * 0.5 auto;
+  }
+  @include md{
+    font-size: $size * 1.1;
+    margin: $padding * 0.4 auto;
+  }
+  @include lg{
+    font-size: $size * 1.1;
+  }
+  @include xl{
+    font-size: $size * 1;
+    margin: $padding * 0.4 auto;
   }
 
 }
 .resize-title{
   position: relative;
-  font-size: $size *1.1;
+  font-size: $size ;
   word-wrap: break-word;
   margin: auto;
   @include sm{
-    font-size: $size * 1.5;
+    font-size: $size * 1.4;
   }
 }
 
 //pour fermer la popup
 .menuBars {
   position: absolute;
-  top: 20px;
-  right: 30px;
+  top: 30px;
+  right: 20px;
   width: 50px;
   height: 50px;
   z-index: 101;
@@ -226,11 +268,12 @@ h3 {
 
 .menuBar {
   background-color: $orange-color;
+  position: absolute;
   width: 100%;
   height: 0.5rem;
   margin: auto;
   border-radius: 40% 50%;
-  position: absolute;
+
 }
 #menuTop{
   @include rotate-ellipse(45deg);

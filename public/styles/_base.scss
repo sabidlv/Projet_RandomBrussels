@@ -67,10 +67,14 @@ main {
 }
 
 h1 {
-  font-size: $size *0.5;
+  position: absolute;
+  right: 10px;
+  top: $height *0.1;
+  font-size: $size *0.2;
   color: $white-color;
   width: $width * 0.001;
   height: $height * 0.001;
+
 }
 
 section {
@@ -193,15 +197,14 @@ footer {
   height: $height * 0.1;
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
+  flex-wrap: nowrap;
+  justify-content: space-around;
   align-items: center;
   p {
-    font-size: 1.2rem;
-    width: 100%;
-    text-align: center;
+    font-size: $size *0.7;
+    text-align: left;
     @include sm{
-      font-size: 1.3rem;
+      font-size: 1rem;
     }
     @include md{
       font-size: 1.4rem;
@@ -213,4 +216,8 @@ footer {
       font-size: 1.9rem;
     }
   }
+}
+#icon-partenaire{
+  width: $width * 0.1;
+  height: auto ;
 }

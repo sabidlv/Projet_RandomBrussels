@@ -106,11 +106,6 @@ for (const path of parcours) {
       });
       $('.menuBars').append('<div id ="menuTop" class= "menuBar"></div>');
       $('.menuBars').append('<div id ="menuBottom" class= "menuBar"></div>');
-      // $('.popup').append(`<img id="myimage" src='./assets/images/parcours/${parcoursTab[j][path.key][3]}' alt='musée'>`);
-      /* for (let i = 0; i < parcoursTab[j][path.key].length - 1; i++) {
-        $('.popup')
-          .append(`<p class="resize">${parcoursTab[j][path.key][i]}</p>`);
-      } */
       let compt = 0;
       const hasards = tabRetour.filter((x) => x.key === 'hasard');
       for (const el of tabRetour) {
