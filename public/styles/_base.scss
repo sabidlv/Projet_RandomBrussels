@@ -41,7 +41,7 @@ header {
   //crée un nouveau espace d'emplilement si z-index nest pas auto
   position: absolute;
   top: 20px;
-  left: 40px;
+  left: 35px;
   width: 4rem;
   height: auto;
   padding: $padding * 0.5;
@@ -67,8 +67,8 @@ main {
 }
 
 h1 {
-  font-size: 0;
-  overflow: hidden;
+  font-size: $size *0.5;
+  color: $white-color;
   width: $width * 0.001;
   height: $height * 0.001;
 }
@@ -112,32 +112,20 @@ section {
 
   }
 }
-h3 {
-  font-size: $size * 1.8;     
-  margin-left:$padding *3  ;
-  margin-bottom: $padding * 2;
 
-@include lg{
-  font-size: $size * 3; 
-  margin-left:$padding *8;
-  margin-bottom: $padding * 2;
-}
-  @include xl{
-    font-size: $size * 3; 
-    margin-left:$padding *8;
-}
-} 
  
 
 #introduction {
   color: $black-color;
   font-size: $size;
   text-align: center;
-  margin-left: $padding * 2;
-  margin-right: $padding * 2;
+  margin-left: $padding * 1.5;
+  margin-right: $padding * 1.5;
   margin-bottom: $padding * 2;
   @include xs{
-    font-size: $size * 1;
+    font-size: $size * 1.2;
+    margin-left: $padding * 2;
+    margin-right: $padding * 2;
     margin-bottom: $padding * 1.8;
   }
   @include sm{
@@ -145,7 +133,7 @@ h3 {
     margin-bottom: $padding * 3.1;
   }
   @include md{
-    font-size: $size * 1.3;
+    font-size: $size * 1.4;
   }
 
   @include lg {

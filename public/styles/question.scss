@@ -32,6 +32,8 @@
 }
 .div-input {
   width: $width *0.6;
+  padding-left: $padding;
+  padding-bottom: $padding *0.4;
   margin: auto;
   height: auto;
   @include md{
@@ -73,12 +75,15 @@ input[type="radio"]:checked + label:before {
 
 label {
   display: inline-block;
-  font-size: $size;
+  font-size: $size*1.2;
   text-align: center;
   margin: auto;
   cursor: pointer;
+  @include sm{
+    font-size: $size * 1.3;
+  }
   @include md{
-    font-size: $size *1.4;
+    font-size: $size *1.6;
   }
   @include lg{
     font-size: $size* 1.5;
@@ -87,7 +92,25 @@ label {
     font-size: $size *1.7;
   }
 }
+h3 {
+  font-size: $size * 1.8;     
+  margin-left:$padding *2.8;
+  margin-bottom: $padding * 2;
+  @include md{
+    font-size: $size * 2.5;
+    margin-left: $padding * 4;
+  }
 
+@include lg{
+  font-size: $size * 3; 
+  margin-left:$padding *8;
+  margin-bottom: $padding * 2;
+}
+  @include xl{
+    font-size: $size * 3; 
+    margin-left:$padding *8;
+}
+} 
 
 
 // fléche verte en svg: pour passer les questions
@@ -131,45 +154,63 @@ label {
 
 //div contient le svg: route
 .popup {
+  background-color: $white-color;
   position: fixed;
   display: none;
-  background-color: $white-color;
-  padding: $width * 0.05;
-  margin: auto;
+  //popup afficjer au milieu de la page
   top: 50%;
   left: 50%;  
   transform: translate(-50%, -50%);  
   width: $width * 0.8;  
-  height: $height*0.6;  
+  height: $height * 0.7;  
   border-radius: 10%;
   border: 1px solid $black-color;
+  overflow: hidden;
+  padding: $padding * 0.6;
+  margin: auto;
   img{
     display: inline-block;
-    width: 40%;
-    height: auto;
+    width: auto;
+    height: 25%;
     border-radius: 20% 30% ;
+  }
+  @include sm{
+    padding: $padding * 2;
+  }
+  @include md{
+
   }
   @include lg{
     width: $width *0.4;
-    padding: $width * 0.01;
+    padding: $width * 0.03;
   }
 
 }
 
 .resize{
   position: relative;
-  font-size: $size * 0.6;
+  display: inline-block;
+  font-size: $size * 0.8;
   word-wrap: break-word;
-  padding-bottom: $height * 0.02;
-  margin: auto;
+  margin: $padding * 0.5 auto;
+  @include xs{
+    font-size: $size * 1;
+
+  }
+  @include sm{
+    font-size: $size * 1.7;
+    margin: $padding * 1 auto;
+  }
 
 }
 .resize-title{
   position: relative;
   font-size: $size *1.1;
   word-wrap: break-word;
-  padding-bottom: $height * 0.02;
   margin: auto;
+  @include sm{
+    font-size: $size * 1.5;
+  }
 }
 
 //pour fermer la popup
