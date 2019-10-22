@@ -43,8 +43,6 @@ $('#arrow2').on('click', () => {
     });
   }
 });
-
-
 // récuperer valeur inputs
 let val1 = '';
 let val2 = '';
@@ -53,7 +51,6 @@ let flag1 = false;
 let flag2 = false;
 let flag3 = false;
 let tabRetour = [];
-
 
 $("input[type='radio']").click(() => {
   if ($('input[name="musee"]').is(':checked')) {
@@ -128,6 +125,12 @@ for (const path of parcours) {
           compt++;
         } */
       }
+      $('#myimage').on('click', ()=>{
+        console.log('apparait');
+        
+        $('.overlay').show();
+        $('.popup').hide();
+      });
     }
   });
 }

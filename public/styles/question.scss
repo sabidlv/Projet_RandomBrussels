@@ -291,3 +291,23 @@ h3 {
   width: 200px;  
   height: auto;  
 }*/
+
+.overlay {
+  display: none;
+  position: absolute;
+  width: $width;
+  height: $height * 0.75;
+  background-color: rgba($color: $green-color, $alpha: 0.6);
+}
+
+// POPUP IMAGE
+.popup-img{
+  position: absolute;
+  top: 50%;
+  left: 50%;  
+  transform: translate(-50%, -50%);  
+  width: 50%;  
+  margin: auto;
+  height: auto;  
+
+}
