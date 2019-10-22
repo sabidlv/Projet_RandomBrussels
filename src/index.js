@@ -106,10 +106,10 @@ for (const path of parcours) {
       });
       $('.menuBars').append('<div id ="menuTop" class= "menuBar"></div>');
       $('.menuBars').append('<div id ="menuBottom" class= "menuBar"></div>');
-      let compt = 0;
-      const hasards = tabRetour.filter((x) => x.key === 'hasard');
+      // let compt = 0;
+      // const hasards = tabRetour.filter((x) => x.key === 'hasard'); && el.key !== 'hasard'
       for (const el of tabRetour) {
-        if (el.key === path.key && el.key !== 'hasard') {
+        if (el.key === path.key) {
           console.log(1);
           $('.popup')
             .append(`<img id="myimage" src='./assets/images/parcours/${el.image}' alt='musée'>`)
@@ -117,7 +117,7 @@ for (const path of parcours) {
             .append(`<a class="resize" href=${el.map} target='_blank' class= 'linkPopup'> ${el.adresse}</a>`)
             .append(`<p class="resize">${el.description}</p>`)
             .append(`<a  class="resize" href=${el.url} target= '_blank' class = 'linkPopup'> Site of the place</a>`);
-        } else if (el.key === path.key && el.key === 'hasard') {
+        } /* else if (el.key === path.key && el.key === 'hasard') {
           console.log(2);
           $('.popup')
             .append(`<img id="myimage" src='./assets/images/parcours/${hasards[compt].image}' alt='musée'>`)
@@ -126,7 +126,7 @@ for (const path of parcours) {
             .append(`<p class="resize">${hasards[compt].description}</p>`)
             .append(`<a  class="resize" href=${hasards[compt].url} target= '_blank' class = 'linkPopup'> Site of the place</a>`);
           compt++;
-        }
+        } */
       }
     }
   });

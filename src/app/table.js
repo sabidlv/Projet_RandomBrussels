@@ -1,97 +1,84 @@
+import { reject } from 'ramda';
 import {
   musees, restaurants, bars, hasard,
 } from './Data/dataTable';
 import { objBetween } from './Helpers/between';
+import { choiceUser } from './Helpers/choiceHasard';
 
 // --- corps du texte
-
-const choiceMusee = [];
-const choiceBar = [];
-const choiceRestaurant = [];
-const choiceHasard = [];
-let rand = 0;
-let rand2 = 0;
-let rand3 = 0;
-const choiceRoute = [];
-
 export const myfct = function constructRoute(val1, val2, val3) {
-  console.log('hello je commence tout juste');
-  // cherhcher tous les musees du type demander
-  for (let i = 0; i < musees.length; i++) {
-    if (val1 === musees[i].type) {
-      choiceMusee.push(musees[i]);
-    }
+  let flag1; let flag2; let flag3 = false; let flag4 = false;
+  const choiceRoute = []; let choiceRestaurant = [];
+  let rand3;
+  if (choiceUser) {
+    choiceRoute.push(choiceUser(val1, musees));
+    flag1 = true;
   }
-  // afficher les musées
-  for (const el of choiceMusee) {
-    console.log(`les musées choisis:${el.nom}`);
+  if (choiceUser) {
+    choiceRoute.push(choiceUser(val3, bars));
+    flag2 = true;
   }
-  // choisir un musée random
-  rand = Math.floor(Math.random() * choiceMusee.length);
-  console.log(`le musée gagant:${choiceMusee[rand].nom}`);
-  choiceRoute.push(choiceMusee[rand]);
+  if (flag1 && flag2) {
+    const mymax1 = objBetween(choiceRoute[0].latitude, choiceRoute[1].latitude).maxi;
+    const mymin1 = objBetween(choiceRoute[0].latitude, choiceRoute[1].latitude).mini;
 
-  // chercher tous les bar selon le type demander
-  for (let i = 0; i < bars.length; i++) {
-    if (val3 === bars[i].type) {
-      choiceBar.push(bars[i]);
+    choiceRestaurant = restaurants
+      .filter((el) => val2 === el.type)
+      .filter((el) => el.latitude >= mymin1 && el.latitude <= mymax1);
+    console.table(choiceRestaurant);
+    if (choiceRestaurant.length > 0) {
+      rand3 = Math.floor(Math.random() * choiceRestaurant.length);
+      choiceRoute.push(choiceRestaurant[rand3]);
+      flag3 = true;
     }
   }
-  for (const el of choiceBar) {
-    console.log(`les bars choisis:${el.nom}`);
-  }
-  // choisir un bar au hasard dans le meme type
-  rand2 = Math.floor(Math.random() * choiceBar.length);
-  console.log(`le bar gagant:${choiceBar[rand2].nom}`);
-  choiceRoute.push(choiceBar[rand2]);
-  // choisir un bar selon le type demander et la latitude
-  for (let i = 0; i < restaurants.length; i++) {
-    if (val2 === restaurants[i].type) {
-      const mymax = objBetween(choiceMusee[rand].latitude, choiceBar[rand2].latitude).maxi;
-      const mymin = objBetween(choiceMusee[rand].latitude, choiceBar[rand2].latitude).mini;
+  const themax = objBetween(choiceRoute[0].latitude, choiceRoute[1].latitude).maxi;
+  const themin = objBetween(choiceRoute[0].latitude, choiceRoute[1].latitude).mini;
+  let bighasard = hasard.filter((el) => el.latitude <= themax
+   && el.latitude >= themin);
 
-      if ((mymin <= restaurants[i].latitude) && (mymax >= restaurants[i].latitude)) {
-        choiceRestaurant.push(restaurants[i]);
-      }
+  const mesHasards = (mymax, mymin) => {
+    debugger;
+    const toto = bighasard;
+    const hasardFilter = toto.filter((el) => el.latitude >= mymin && el.latitude <= mymax);
+    if (hasardFilter.length > 0) {
+      const rando = Math.floor(Math.random() * hasardFilter.length);
+      choiceRoute.push(hasardFilter[rando]);
+      bighasard = reject((el) => el === hasardFilter[rando])(bighasard);
+    } const flag = false;
+    return flag;
+  };
+  if (flag1 && flag3) {
+    const mymax = objBetween(choiceRoute[0].latitude, choiceRestaurant[rand3].latitude).maxi;
+    const mymin = objBetween(choiceRoute[0].latitude, choiceRestaurant[rand3].latitude).mini;
+    if (mesHasards) {
+      mesHasards(mymax, mymin);
+      choiceRoute[choiceRoute.length - 1].key = 'hasard1';
     }
   }
-  for (const el of choiceRestaurant) {
-    console.log(`les resto choisis:${el.nom}`);
+  if (flag2 && flag3) {
+    const mymax = objBetween(choiceRestaurant[rand3].latitude, choiceRoute[1].latitude).maxi;
+    const mymin = objBetween(choiceRestaurant[rand3].latitude, choiceRoute[1].latitude).mini;
+    mesHasards(mymax, mymin);
+    flag4 = true;
   }
-  rand3 = Math.floor(Math.random() * choiceRestaurant.length);
-  console.log(`le resto gagant:${choiceRestaurant[rand3].nom}`);
-  choiceRoute.push(choiceRestaurant[rand3]);
-
-  // choisir les hasards : pour le moment 3
-  // premier hasard
-  for (let i = 0; i < hasard.length; i++) {
-    const mymax = objBetween(choiceMusee[rand].latitude, choiceRestaurant[rand3].latitude).maxi;
-    const mymin = objBetween(choiceMusee[rand].latitude, choiceRestaurant[rand3].latitude).mini;
-    if ((mymin <= hasard[i].latitude) && (mymax >= hasard[i].latitude)) {
-      choiceHasard.push(hasard[i]);
-      choiceRoute.push(hasard[i]);
-      console.log(`le hasard1 gagant:${choiceHasard[i].nom}`);
-      break;
-    }
+  if (flag4) {
+    const mymax = objBetween(choiceRoute[4].latitude, choiceRoute[1].latitude).maxi;
+    const mymin = objBetween(choiceRoute[4].latitude, choiceRoute[1].latitude).mini;
+    mesHasards(mymax, mymin);
   }
-  // deuxieme et troisieme hasard
-  let count = 0;
-  for (let i = 0; i < hasard.length; i++) {
-    const mymax = objBetween(choiceRestaurant[rand3].latitude, choiceBar[rand2].latitude).maxi;
-    const mymin = objBetween(choiceRestaurant[rand3].latitude, choiceBar[rand2].latitude).mini;
-
-    if ((mymin <= hasard[i].latitude) && (mymax >= hasard[i].latitude)) {
-      if (!choiceHasard.includes(hasard[i])) {
-        count++;
-        choiceHasard.push(hasard[i]);
-        choiceRoute.push(hasard[i]);
-        console.log(`le hasard 2 gagant:${choiceHasard[i].nom}`);
-      }
-    }
-    if (count >= 2) {
-      break;
-    }
+  const calc = choiceRoute[1].latitude;
+  const dist1 = choiceRoute[choiceRoute.length - 1] - calc;
+  const dist2 = choiceRoute[choiceRoute.length - 2] - calc;
+  const abs1 = Math.abs(calc, dist1);
+  const abs2 = Math.abs(calc, dist2);
+  if (abs1 <= abs2) {
+    choiceRoute[choiceRoute.length - 1].key = 'hasard2';
+    choiceRoute[choiceRoute.length - 2].key = 'hasard3';
+  } else {
+    choiceRoute[choiceRoute.length - 2].key = 'hasard2';
+    choiceRoute[choiceRoute.length - 1].key = 'hasard3';
   }
-  console.log(choiceRoute);
+  console.table(choiceRoute);
   return choiceRoute;
 };

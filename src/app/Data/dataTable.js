@@ -1,10 +1,10 @@
 
 export const parcours = [
   { id: '#circle-one', key: 'musee' },
-  { id: '#circle-two', key: 'hasard' },
+  { id: '#circle-two', key: 'hasard1' },
   { id: '#circle-three', key: 'restaurant' },
-  { id: '#circle-four', key: 'hasard' },
-  { id: '#circle-five', key: 'hasard' },
+  { id: '#circle-four', key: 'hasard2' },
+  { id: '#circle-five', key: 'hasard3' },
   { id: '#circle-six', key: 'bar' },
 ];
 
@@ -190,7 +190,31 @@ export const hasard = [
     description: ' nono no n blbllblblblbcclblbl bien bien',
     url: '',
     image: 'G1.png',
-    latitude: 60,
+    latitude: 53,
     longitude: 2,
   },
+  {
+    id: 5,
+    key: 'hasard',
+    nom: '  hasahrd 5',
+    adresse: 'rue de la concert 1',
+    description: ' nono no n blbllblblblbcclblbl bien bien',
+    url: '',
+    image: 'G1.png',
+    latitude: 52,
+    longitude: 2,
+  },
+  {
+    id: 6,
+    key: 'hasard',
+    nom: '  hasahrd 6',
+    adresse: 'rue de la concert 1',
+    description: ' nono no n blbllblblblbcclblbl bien bien',
+    url: '',
+    image: 'G1.png',
+    latitude: 56,
+    longitude: 2,
+  },
+
+
 ];
