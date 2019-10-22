@@ -38,7 +38,6 @@ export const myfct = function constructRoute(val1, val2, val3) {
    && el.latitude >= themin);
 
   const mesHasards = (mymax, mymin) => {
-    debugger;
     const toto = bighasard;
     const hasardFilter = toto.filter((el) => el.latitude >= mymin && el.latitude <= mymax);
     if (hasardFilter.length > 0) {
@@ -67,6 +66,7 @@ export const myfct = function constructRoute(val1, val2, val3) {
     const mymin = objBetween(choiceRoute[4].latitude, choiceRoute[1].latitude).mini;
     mesHasards(mymax, mymin);
   }
+
   const calc = choiceRoute[1].latitude;
   const dist1 = choiceRoute[choiceRoute.length - 1] - calc;
   const dist2 = choiceRoute[choiceRoute.length - 2] - calc;
